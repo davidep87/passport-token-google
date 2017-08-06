@@ -12,7 +12,7 @@ unobtrusively integrated into any application or framework that supports
 
 ## Installation
 
-    $ npm install passport-google-token
+    $ npm install passport-token-google
 
 ## Usage
 
