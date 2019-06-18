@@ -33,6 +33,7 @@
     "auth",
     "authn",
     "authentication",
-    "identity"
+    "identity",
+    "loopback"
   ]
 }
