@@ -59,7 +59,7 @@ Add this to providers.json as described in [tutorial!](https://loopback.io/doc/e
 ```
  "google-login": {
     "provider": "google",
-    "module": "passport-google-token",
+    "module": "passport-token-google2",
     "clientID": "{google-client-id-1}",
     "clientSecret": "{google-client-secret-1}",
     "callbackPath": "/auth/google/token",
