@@ -1,6 +1,6 @@
 {
   "name": "passport-token-google2",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Google token authentication strategy for Passport.",
   "author": {
     "name": "Satyarth Upadhyaya",
