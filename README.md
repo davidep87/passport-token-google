@@ -12,7 +12,7 @@ unobtrusively integrated into any application or framework that supports
 
 ## Installation
 
-    $ npm install passport-token-google2
+    $ npm install --save passport-token-google
 
 ## Usage
 
@@ -23,14 +23,22 @@ account and OAuth 2.0 tokens.  The strategy requires a `verify` callback, which
 accepts these credentials and calls `done` providing a user, as well as
 `options` specifying a app ID and app secret.
 
-    const GoogleStrategy = require('passport-token-google2').Strategy
+    const GoogleStrategy = require('passport-token-google').Strategy
+
+    passport.serializeUser((user, done) => {
+        done(null, user);
+    });
+
+    passport.deserializeUser((user, done) => {
+        done(null, user);
+    });
 
     passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET
       },
-      function(accessToken, refreshToken, profile, done) {
-        fetchGoogleUser(profile, accessToken)
+      function(idToken, refreshToken, profile, done) {
+        fetchGoogleUser(profile, idToken)
           .then((user) => done(null, user))
           .catch((err) => {
             // Handle the error
@@ -43,32 +51,13 @@ accepts these credentials and calls `done` providing a user, as well as
 
 Use `passport.authenticate('google-token')` to authenticate requests.
 
-    router.get('/auth/google/token', passport.authenticate('google-token'), someFunction);
+    router.post('/auth/google/token', passport.authenticate('google-token'), someFunction);
 
-GET request need to have `id_token` sent as `access_token` in either the query string or set as a header.  If a POST is being preformed they can also be included in the body of the request.
+GET request need to have `id_token` sent in either the query string or set as a header.  
+If a POST is being preformed they can also be included in the body of the request like:
 
-
-#### Loopback 3.X support
-Complaint with UserIdentity and User model of loopback
-
-The module can be used to authenticate `id_token` sent by client side(android,ios or web) on the loopback as `access_token` in the callbackPath as GET argument.
-
-
-Add this to providers.json as described in [tutorial!](https://loopback.io/doc/en/lb3/Third-party-login-using-Passport.html).
-
-```
- "google-login": {
-    "provider": "google",
-    "module": "passport-token-google2",
-    "clientID": "{google-client-id-1}",
-    "clientSecret": "{google-client-secret-1}",
-    "callbackPath": "/auth/google/token",
-    "scope": ["email", "profile"],
-    "failureFlash": true,
-    "json": true,
-    "session": false
-
+`
+  const body = {
+    id_token: data.tokenId
   }
-```
-
-
+`

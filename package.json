@@ -1,20 +1,20 @@
 {
   "name": "passport-token-google",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Google token authentication strategy for Passport.",
   "author": {
-    "name": "Satyarth Upadhyaya",
-    "email": "satyarth7a@hotmail.com"
+    "name": "Davide Polano",
+    "email": "davide@mdslab.org"
   },
   "scripts": {
     "push": "sh version-to-tag.sh && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/katastreet/passport-token-google.git"
+    "url": "git://github.com/davidep87/passport-token-google.git"
   },
   "bugs": {
-    "url": "http://github.com/katastreet/passport-token-google/issues"
+    "url": "http://github.com/davidep87/passport-token-google/issues"
   },
   "main": "./lib",
   "dependencies": {
